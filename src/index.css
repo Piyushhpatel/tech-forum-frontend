@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbars but allow scrolling */
+.element-with-hidden-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  
+    /* Webkit browsers */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* Hide scrollbars for specific elements */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
