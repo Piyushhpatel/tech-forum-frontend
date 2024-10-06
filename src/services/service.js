@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class Service {
   async fetchPosts(uri) {
-    const url = uri || "https://tech-forum-5o0n.onrender.com/api/v1/posts";
+    const url = uri || "api/posts";
     try {
       const post = await axios.get(url);
 
@@ -17,7 +17,7 @@ export class Service {
   }
 
   async fetchCategories() {
-    const url = "https://tech-forum-5o0n.onrender.com/api/v1/categories";
+    const url = "api/categories";
     try {
       const categories = await axios.get(url);
 
