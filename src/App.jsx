@@ -4,7 +4,7 @@ import Posts from "./components/Posts";
 
 const App = () => {
   return (
-    <div className="bg-gradient-to-r from-slate-500 to-slate-800 h-[100vh] py-4 space-y-3 ">
+    <div className="bg-gradient-to-r h-[100vh] from-slate-500 to-slate-800 py-4 space-y-3 ">
       <Header />
       <Posts />
     </div>

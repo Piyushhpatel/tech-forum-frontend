@@ -1,11 +1,22 @@
 import axios from "axios";
 
 export class Service {
-  async fetchPosts(uri) {
-    const url = uri || "api/posts";
+  async fetchPosts() {
     try {
-      const post = await axios.get(url);
+      const post = await axios.get("/api/posts");
+      if (!post) {
+        console.log("Error fetching posts");
+      }
 
+      return post.data;
+    } catch (error) {
+      console.log("Error fetching posts service", error.message);
+    }
+  }
+
+  async fetchMorePosts(uri) {
+    try {
+      const post = await axios.get(`/api/${uri}`);
       if (!post) {
         console.log("Error fetching posts");
       }
