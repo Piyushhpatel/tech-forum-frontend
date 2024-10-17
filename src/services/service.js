@@ -10,7 +10,7 @@ export class Service {
 
       return post.data;
     } catch (error) {
-      console.log("Error fetching posts service", error.message);
+      throw error;
     }
   }
 
@@ -23,7 +23,7 @@ export class Service {
 
       return post.data;
     } catch (error) {
-      console.log("Error fetching posts service", error.message);
+      throw error;
     }
   }
 
@@ -38,8 +38,21 @@ export class Service {
 
       return categories.data;
     } catch (error) {
-      console.log("Error fetching categories service", error.message);
+      throw error;
     }
+  }
+
+  async createPost({title, content, category}) {
+    try {
+      const response = await axios.post("/api/posts", {title, content, category});
+      if(response){
+        return response.data;
+      }
+    } catch (error) {
+      throw error;
+    }
+
+    return false;
   }
 }
 

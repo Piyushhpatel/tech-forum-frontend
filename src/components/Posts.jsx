@@ -65,7 +65,7 @@ const Posts = () => {
 
   return (
     <div className="bg-slate-200 overflow-hidden max-h-[84vh] flex justify-between max-w-[1200px] mx-10 lg:mx-auto p-4 rounded-xl">
-      <div className="w-[75%] ">
+      <div className="w-full lg:w-[75%]">
         <div className="flex items-center justify-between max-w-[1000px]">
           <p className="text-2xl font-bold text-slate-500">Recents Posts</p>
           <button
@@ -113,7 +113,7 @@ const Posts = () => {
           )}
         </div>
       </div>
-      <div className="bg-white w-[20%] h-fit rounded-lg p-4">
+      <div className="bg-white hidden lg:block w-[20%] h-fit rounded-lg p-4">
         {categoryLoading ? (
           <div className="flex flex-col gap-4">
             <CategoryLoader />
@@ -146,14 +146,14 @@ const Posts = () => {
         leaveTo="opacity-0"
       >
         <TransitionChild>
-          <div className="absolute z-10 bg-slate-600/75 backdrop-blur-md rounded-md">
+          <div className="absolute p-4 max-w-[400px] max-h-fit lg:max-w-[800px] w-full lg:max-h-fit h-full z-10 bg-slate-300/75 backdrop-blur-md rounded-md border border-slate-700">
             <button
-              className="absolute text-slate-100 font-medium right-0 top-0 px-2 py-2"
+              className="absolute text-slate-900 font-medium right-0 top-0 px-2 py-2"
               onClick={() => setShowForm(false)}
             >
               Cancel
             </button>
-            <PostForm />
+            <PostForm setShowForm={setShowForm} categories={categories} />
           </div>
         </TransitionChild>
       </Transition>
