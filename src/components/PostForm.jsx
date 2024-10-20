@@ -6,7 +6,7 @@ const PostForm = ({setShowForm, categories}) => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    category: "",
+    category: "general",
   })
 
   const handleChange = (e) => {
@@ -33,7 +33,7 @@ const PostForm = ({setShowForm, categories}) => {
     setFormData({
         title: "",
         content: "",
-        category: "",
+        category: "general",
     });
   }
 
