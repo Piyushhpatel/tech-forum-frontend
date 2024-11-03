@@ -8,6 +8,8 @@ import PostLoader from "./Loaders/PostLoader";
 import CategoryLoader from "./Loaders/CategoryLoader";
 import { Transition, TransitionChild } from "@headlessui/react";
 import PostForm from "./PostForm";
+
+
 const Posts = () => {
   const [loading, setLoading] = useState(false);
   const [categoryLoading, setCategoryLoading] = useState(false);
