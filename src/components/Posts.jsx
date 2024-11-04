@@ -8,9 +8,11 @@ import PostLoader from "./Loaders/PostLoader";
 import CategoryLoader from "./Loaders/CategoryLoader";
 import { Transition, TransitionChild } from "@headlessui/react";
 import PostForm from "./PostForm";
-
+import { useSelector } from "react-redux";
+import LoginPreview from "./LoginPreview";
 
 const Posts = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [loading, setLoading] = useState(false);
   const [categoryLoading, setCategoryLoading] = useState(false);
   const [postObj, setPostObj] = useState(null);
@@ -146,17 +148,24 @@ const Posts = () => {
         leave="transition-opacity duration-300"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
+        className={`${!isAuthenticated && "absolute inset-0 bg-slate-800/75 z-10 flex justify-center items-center"}`}
       >
         <TransitionChild>
-          <div className="absolute p-4 max-w-[400px] max-h-fit lg:max-w-[800px] w-full lg:max-h-fit h-full z-10 bg-slate-300/75 backdrop-blur-md rounded-md border border-slate-700">
-            <button
-              className="absolute text-slate-900 font-medium right-0 top-0 px-2 py-2"
-              onClick={() => setShowForm(false)}
-            >
-              Cancel
-            </button>
-            <PostForm setShowForm={setShowForm} categories={categories} />
-          </div>
+          {isAuthenticated ? (
+            <div className="absolute p-4 max-w-[400px] max-h-fit lg:max-w-[800px] w-full lg:max-h-fit h-full z-10 bg-slate-300/75 backdrop-blur-md rounded-md border border-slate-700">
+              <button
+                className="absolute text-slate-900 font-medium right-0 top-0 px-2 py-2"
+                onClick={() => setShowForm(false)}
+              >
+                Cancel
+              </button>
+              <PostForm setShowForm={setShowForm} categories={categories} />
+            </div>
+          ) : (
+            <div className="absolute">
+              <LoginPreview setShowForm={setShowForm} />
+            </div>
+          )}
         </TransitionChild>
       </Transition>
     </div>

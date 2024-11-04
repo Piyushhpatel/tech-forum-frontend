@@ -9,9 +9,7 @@ class AuthService {
         password,
       });
 
-      if (user) {
-        return user?.data;
-      }
+      return user?.data?.data;
     } catch (error) {
       throw error;
     }
@@ -25,7 +23,7 @@ class AuthService {
       });
 
       if (user) {
-        return user?.data;
+        return user?.data?.data;
       }
     } catch (error) {
       throw error;
@@ -34,9 +32,9 @@ class AuthService {
 
   async logoutUser() {
     try {
-      const user = await axios.get("/api/users/logout-user");
+      const user = await axios.post("/api/users/logout-user");
       if (user) {
-        return user?.data;
+        return user?.data?.data;
       }
     } catch (error) {
       throw error;
@@ -47,7 +45,18 @@ class AuthService {
     try {
       const user = await axios.get("/api/users/current-user");
       if (user) {
-        return user?.data;
+        return user?.data?.data;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async refreshToken() {
+    try {
+      const res = await axios.post("/api/users/refresh-access-token");
+      if(res) {
+        return res?.data?.data;
       }
     } catch (error) {
       throw error;
